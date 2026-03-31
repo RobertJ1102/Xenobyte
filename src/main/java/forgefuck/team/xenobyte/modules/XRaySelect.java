@@ -19,6 +19,7 @@ import forgefuck.team.xenobyte.api.module.Category;
 import forgefuck.team.xenobyte.api.module.CheatModule;
 import forgefuck.team.xenobyte.api.module.PerformMode;
 import forgefuck.team.xenobyte.api.module.PerformSource;
+import forgefuck.team.xenobyte.api.gui.WidgetMode;
 import forgefuck.team.xenobyte.gui.click.elements.Button;
 import forgefuck.team.xenobyte.gui.click.elements.Panel;
 import forgefuck.team.xenobyte.gui.swing.ColorPickerGui;
@@ -97,10 +98,15 @@ public class XRaySelect extends CheatModule {
                NEI.openGui("@" + neiSubset);
             break;
         case KEY:
-            ItemStack stack = utils.isInGameGui() ? utils.getStackFromView() : NEI.getStackMouseOver();
+            ItemStack stack = NEI.getStackMouseOver();
+            if (stack == null && utils.isInGameGui()) {
+                stack = utils.getStackFromView();
+            }
             if (stack != null && stack.getItem() instanceof ItemBlock) {
                 SelectedBlock block = getBlock(stack);
                 new XRaySettings(block == null ? new SelectedBlock(stack, Colors.BLACK, 1, false, false) : block).showFrame();
+            } else {
+                widgetMessage(lang.get("Hover a block in NEI or look at a block in world and press the keybind", "Наведите на блок в NEI или смотрите на блок в мире и нажмите кейбинд"), WidgetMode.FAIL);
             }
         }
     }

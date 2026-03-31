@@ -1,6 +1,7 @@
 package forgefuck.team.xenobyte.api.integration;
 
 import java.util.List;
+import java.lang.reflect.Method;
 
 import cpw.mods.fml.common.Loader;
 import forgefuck.team.xenobyte.api.Xeno;
@@ -42,10 +43,19 @@ public class NEI {
     public static ItemStack getStackMouseOver() {
         try {
             GuiContainer container = Xeno.utils.guiContainer();
-            if (container instanceof GuiContainer) {
-                Object checkItem = Class.forName("codechicken.nei.guihook.GuiContainerManager").getDeclaredMethod("getStackMouseOver", GuiContainer.class).invoke(null, container);
-                if (checkItem != null) {
-                    return ((ItemStack)checkItem).copy();
+            if (container != null) {
+                Class<?> managerClass = Class.forName("codechicken.nei.guihook.GuiContainerManager");
+                Object checkItem = null;
+                try {
+                    checkItem = managerClass.getDeclaredMethod("getStackMouseOver", GuiContainer.class).invoke(null, container);
+                } catch (NoSuchMethodException e) {
+                    try {
+                        Method method = managerClass.getDeclaredMethod("getStackMouseOver");
+                        checkItem = method.invoke(null);
+                    } catch (NoSuchMethodException ex) {}
+                }
+                if (checkItem instanceof ItemStack) {
+                    return ((ItemStack) checkItem).copy();
                 }
             }
         } catch (Exception e) {}

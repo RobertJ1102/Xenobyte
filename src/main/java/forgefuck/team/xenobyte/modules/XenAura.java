@@ -1,6 +1,7 @@
 package forgefuck.team.xenobyte.modules;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import forgefuck.team.xenobyte.api.config.Cfg;
@@ -34,6 +35,7 @@ public class XenAura extends CheatModule {
     @Cfg("pointed") private boolean pointed;
     @Cfg("radius") private int radius;
     @Cfg("delay") private int delay;
+    @Cfg("maxTargets") private int maxTargets;
     
     public XenAura() {
         super("XenAura", Category.PLAYER, PerformMode.TOGGLE);
@@ -42,11 +44,12 @@ public class XenAura extends CheatModule {
         criticals = true;
         players = true;
         radius = 6;
+        maxTargets = 1;
     }
     
     private void attack(Entity e) {
         EntityPlayer pl = utils.player();
-        if (criticals && pl.isCollidedVertically) {
+        if (criticals && pl.isCollidedVertically && pl.canEntityBeSeen(e)) {
             utils.sendPacket(new C04PacketPlayerPosition(pl.posX, pl.posY + 0.0624D, pl.posY + 1.0D, pl.posZ, true));
             utils.sendPacket(new C04PacketPlayerPosition(pl.posX, pl.posY, pl.posY + 1.0D, pl.posZ, false));
             utils.sendPacket(new C04PacketPlayerPosition(pl.posX, pl.posY + 0.000111D, pl.posY + 1.0D, pl.posZ, false));
@@ -66,9 +69,12 @@ public class XenAura extends CheatModule {
         if (inGame) {
             utils.nearEntityes(radius)
             .filter(e -> e instanceof EntityLivingBase && !e.isDead)
+            .filter(e -> ((EntityLivingBase) e).hurtResistantTime <= 0)
             .filter(e -> (players && utils.isPlayer(e) && !friendsList.contains(e.getCommandSenderName())) || (monsters && utils.isMonster(e)) || (animals && utils.isAnimal(e)) || (customnpc && utils.isCustom(e)) || (villagers && utils.isVillager(e)))
             .filter(e -> ignoreWalls ? true : utils.player().canEntityBeSeen(e))
             .filter(e -> pointed ? e == utils.pointedEntity() : true)
+            .sorted(Comparator.comparingDouble(e -> utils.player().getDistanceSqToEntity(e)))
+            .limit(Math.max(1, maxTargets))
             .forEach(this::attack);
         }
     }
@@ -93,6 +99,14 @@ public class XenAura extends CheatModule {
                 }
                 @Override public String elementDesc() {
                     return lang.get("Hitting delay", "Задержка нанесения ударов");
+                }
+            },
+            new ScrollSlider("MaxTargets", maxTargets, 1, 10) {
+                @Override public void onScroll(int dir, boolean withShift) {
+                    maxTargets = Math.max(1, processSlider(dir, withShift));
+                }
+                @Override public String elementDesc() {
+                    return lang.get("Maximum attacked targets per tick", "Максимум атакуемых целей за тик");
                 }
             },
             new Button("Friends") {

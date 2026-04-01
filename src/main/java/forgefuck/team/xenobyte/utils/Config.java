@@ -3,7 +3,6 @@ package forgefuck.team.xenobyte.utils;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -152,7 +151,7 @@ public class Config {
     private Object parseModuleValue(String type, String val) throws ConfigTypeException {
         switch (type) {
         case "char":
-            return Charset.forName(val);
+            return val != null && !val.isEmpty() ? val.charAt(0) : '\0';
         case "boolean":
             return Boolean.parseBoolean(val);
         case "byte":

@@ -1,7 +1,6 @@
 package forgefuck.team.xenobyte.modules;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -34,7 +33,8 @@ public class XRay extends CheatModule {
     @Cfg("lines") private boolean lines;
     @Cfg("radius") private int radius;
     @Cfg("height") private int height;
-    private List<IDraw> blocks;
+    private volatile List<IDraw> blocks;
+    private volatile boolean updateInProgress;
     public boolean linesCheck;
     private double lx, ly, lz;
     
@@ -52,40 +52,49 @@ public class XRay extends CheatModule {
     }
     
     private void updateBlocks() {
+        if (updateInProgress || utils.world() == null || utils.player() == null) {
+            return;
+        }
+        updateInProgress = true;
         List<IDraw> out = new ArrayList<IDraw>();
         int[] pos = utils.myCoords();
         World world = utils.world();
-        new Thread(() -> {
-            for (int y = 0; y <= height; y++) {
-                for (int x = pos[0] - radius; x <= pos[0] + radius; x++) {
-                    for (int z = pos[2] - radius; z <= pos[2] + radius; z++) {
-                        Block block = world.getBlock(x, y, z);
-                        if (block instanceof BlockAir || block instanceof BlockDirt) {
-                            continue;
-                        }
-                        SelectedBlock sel = xraySelector().getBlock(block, ignoreMetaFor(block) ? 0 : world.getBlockMetadata(x, y, z));
-                        if (sel != null) {
-                            double dX = (double) x;
-                            double dY = (double) y;
-                            double dZ = (double) z;
-                            out.add(() -> {
-                                lx = bindLines ? RenderManager.instance.viewerPosX : lx;
-                                ly = bindLines ? RenderManager.instance.viewerPosY : ly;
-                                lz = bindLines ? RenderManager.instance.viewerPosZ : lz;
-                                if (!sel.hidden) {
-                                    if (lines && sel.tracer) {
-                                        render.WORLD.drawEspLine(lx, ly, lz, dX + 0.5, dY + 0.5, dZ + 0.5, sel.rf, sel.gf, sel.bf, sel.af, 3);
-                                        linesCheck = true;
+        Thread scanThread = new Thread(() -> {
+            try {
+                int minY = Math.max(0, pos[1] - height);
+                int maxY = Math.min(255, pos[1] + height);
+                for (int y = minY; y <= maxY; y++) {
+                    for (int x = pos[0] - radius; x <= pos[0] + radius; x++) {
+                        for (int z = pos[2] - radius; z <= pos[2] + radius; z++) {
+                            Block block = world.getBlock(x, y, z);
+                            if (block instanceof BlockAir || block instanceof BlockDirt) {
+                                continue;
+                            }
+                            SelectedBlock sel = xraySelector().getBlock(block, ignoreMetaFor(block) ? 0 : world.getBlockMetadata(x, y, z));
+                            if (sel != null) {
+                                double dX = (double) x;
+                                double dY = (double) y;
+                                double dZ = (double) z;
+                                out.add(() -> {
+                                    if (!sel.hidden) {
+                                        if (lines && sel.tracer) {
+                                            render.WORLD.drawEspLine(lx, ly, lz, dX + 0.5, dY + 0.5, dZ + 0.5, sel.rf, sel.gf, sel.bf, sel.af, 3);
+                                            linesCheck = true;
+                                        }
+                                        render.WORLD.drawEspBlock(dX, dY, dZ, sel.rf, sel.gf, sel.bf, sel.af, sel.scale);
                                     }
-                                    render.WORLD.drawEspBlock(dX, dY, dZ, sel.rf, sel.gf, sel.bf, sel.af, sel.scale);
-                                }
-                            });
+                                });
+                            }
                         }
                     }
                 }
+                blocks = out;
+            } finally {
+                updateInProgress = false;
             }
-            blocks = out;
-        }).start();
+        }, "xeno-xray-scan");
+        scanThread.setDaemon(true);
+        scanThread.start();
     }
     
     @Override public void onDisabled() {
@@ -103,10 +112,10 @@ public class XRay extends CheatModule {
     }
     
     @SubscribeEvent public void worldRender(RenderWorldLastEvent e) {
-        Iterator<IDraw> iterator = blocks.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().draw();
-        }
+        lx = bindLines ? RenderManager.instance.viewerPosX : utils.player().posX;
+        ly = bindLines ? RenderManager.instance.viewerPosY : utils.player().posY;
+        lz = bindLines ? RenderManager.instance.viewerPosZ : utils.player().posZ;
+        blocks.forEach(IDraw::draw);
     }
     
     @Override public String moduleDesc() {

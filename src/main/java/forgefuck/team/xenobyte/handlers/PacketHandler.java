@@ -1,7 +1,6 @@
 package forgefuck.team.xenobyte.handlers;
 
 import forgefuck.team.xenobyte.api.Xeno;
-import forgefuck.team.xenobyte.utils.Rand;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
@@ -9,10 +8,14 @@ import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.Packet;
 
 public class PacketHandler {
+    private static final String XENO_PACKET_HANDLER = "xeno_packet_handler";
     
     public PacketHandler(ModuleHandler handler, NetHandlerPlayClient clientHandler) {
         if (handler != null && clientHandler != null) {
-            clientHandler.getNetworkManager().channel().pipeline().addBefore("packet_handler", Rand.str(), new ChannelDuplexHandler() {
+            if (clientHandler.getNetworkManager().channel().pipeline().get(XENO_PACKET_HANDLER) != null) {
+                clientHandler.getNetworkManager().channel().pipeline().remove(XENO_PACKET_HANDLER);
+            }
+            clientHandler.getNetworkManager().channel().pipeline().addBefore("packet_handler", XENO_PACKET_HANDLER, new ChannelDuplexHandler() {
                 @Override public void channelRead(ChannelHandlerContext ctx, Object in) throws Exception {
                     if (handler.enabledModules().allMatch(m -> m.doReceivePacket((Packet) in))) {
                         super.channelRead(ctx, in);

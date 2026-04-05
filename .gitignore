@@ -1,7 +1,7 @@
 .gradle
 build/
 *.txt
-*.md
+# Track README.md / CHANGELOG.md — ignore only local notes if needed, e.g. /notes/*.md
 loader/classes.h
 loader/xenobyte-1.0.0.jar
 loader/eloader/.vs/

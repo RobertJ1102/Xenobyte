@@ -153,6 +153,10 @@ public class ModuleHandler  {
     }
     
     public void perform(CheatModule module, Button button) {
+        if (module instanceof Widgets && button == null && module.hasKeyBind()) {
+            ((Widgets) module).toggleHud();
+            return;
+        }
         WidgetMessage mess = new WidgetMessage(module, Xeno.lang.get("completed", "выполнен"), WidgetMode.INFO);
         switch (module.getMode()) {
         case SINGLE:

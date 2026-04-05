@@ -21,12 +21,15 @@ import forgefuck.team.xenobyte.gui.click.elements.GuiWidget;
 import forgefuck.team.xenobyte.gui.click.elements.Panel;
 import forgefuck.team.xenobyte.render.Colors;
 import forgefuck.team.xenobyte.render.GuiScaler;
+import forgefuck.team.xenobyte.utils.Config;
 import forgefuck.team.xenobyte.utils.TickHelper;
 import net.minecraftforge.client.event.GuiScreenEvent.InitGuiEvent;
 
 public class Widgets extends CheatModule {
     
     private Map<CheatModule, GuiWidget> keyabled, modulesInfo;
+    /** Master switch: when false, no overlay (side list, messages, info) is drawn. */
+    @Cfg("showHud") private boolean showHud;
     @Cfg("showKeyabled") private boolean showKeyabled;
     @Cfg("showWidget") private boolean showWidget;
     @Cfg("showInfo") private boolean showInfo;
@@ -39,10 +42,24 @@ public class Widgets extends CheatModule {
         infoWidgets = new CopyOnWriteArrayList<GuiWidget>();
         keyabled = new HashMap<CheatModule, GuiWidget>();
         infoWidgetsDelay = TickHelper.FOUR_SEC;
+        showHud = true;
         showKeyabled = true;
         showWidget = true;
         showInfo = true;
         cfgState = true;
+    }
+    
+    /**
+     * Toggles the on-screen HUD (same as the HUD panel button). Used by keybind via {@link forgefuck.team.xenobyte.handlers.ModuleHandler#perform(CheatModule, forgefuck.team.xenobyte.gui.click.elements.Button)}.
+     */
+    public void toggleHud() {
+        showHud = !showHud;
+        if (!showHud) {
+            infoWidgets.clear();
+        } else {
+            widgetMessage(lang.get("HUD overlay on", "Оверлей HUD включён"), WidgetMode.SUCCESS);
+        }
+        Config.save();
     }
     
     @Override public void onPostInit() {
@@ -51,13 +68,16 @@ public class Widgets extends CheatModule {
     }
     
     public void widgetMessage(WidgetMessage mess) {
-        if (showWidget) {
+        if (showHud && showWidget) {
             infoWidgets.add(0, new GuiWidget(mess.getMessage(), mess.getMode(), ElementAligment.LEFT, Colors.TRANSPARENT_DARKEST, infoWidgetsDelay));
             updateWidgetPoses();
         }
     }
     
     public void infoMessage(WidgetMessage mess) {
+        if (!showHud) {
+            return;
+        }
         if (mess.hasModule() && mess.getModule().isWidgetable()) {
             modulesInfo.put(mess.getModule(), new GuiWidget(mess.getMessage(), mess.getMode(), ElementAligment.LEFT, Colors.TRANSPARENT_DARKEST, 0));
             updateInfoPoses();
@@ -121,6 +141,11 @@ public class Widgets extends CheatModule {
         return false;
     }
     
+    /** Allow HUD keybind while any GUI is open (inventory, etc.). */
+    @Override public boolean inGuiPerform() {
+        return true;
+    }
+    
     @SubscribeEvent public void guiInit(InitGuiEvent.Pre e) {
         onEnabled();
     }
@@ -136,7 +161,7 @@ public class Widgets extends CheatModule {
     }
     
     @Override public void onDrawGuiLast() {
-        if (showWidget) {
+        if (showHud && showWidget) {
             Iterator<GuiWidget> iterator = infoWidgets.iterator();
             while (iterator.hasNext()) {
                 iterator.next().draw();
@@ -145,6 +170,9 @@ public class Widgets extends CheatModule {
     }
     
     @Override public void onDrawGuiOverlay() {
+        if (!showHud) {
+            return;
+        }
         if (showInfo) {
             Iterator<GuiWidget> iterator = modulesInfo.values().iterator();
             while (iterator.hasNext()) {
@@ -181,11 +209,20 @@ public class Widgets extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-         return lang.get("Display setted information widgets", "Отображение заданных информационных виджетов");
+         return lang.get("Display setted information widgets. HUD button or keybind toggles the overlay.", "Отображение заданных информационных виджетов. Кнопка HUD или кейбинд переключают оверлей.");
     }
     
     @Override public Panel settingPanel() {
         return new Panel(
+            new Button("HUD", showHud) {
+                @Override public void onLeftClick() {
+                    toggleHud();
+                    buttonValue(showHud);
+                }
+                @Override public String elementDesc() {
+                    return lang.get("Show on-screen overlay (side module list, messages, info panels)", "Показывать оверлей (боковой список модулей, сообщения, инфо-панели)");
+                }
+            },
             new Button("Keyabled", showKeyabled) {
                 @Override public void onLeftClick() {
                     buttonValue(showKeyabled = !showKeyabled);

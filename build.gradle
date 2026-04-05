@@ -9,10 +9,14 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            url = "https://jitpack.io"
+        }
         flatDir dirs: "$projectDir/proguard/lib/"
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT"        
+        // Upstream 1.2-SNAPSHOT still points at dead Mojang S3 URLs; GTNH fork fixes downloads.
+        classpath "com.github.GTNewHorizons:ForgeGradle:1.2.11"
         classpath ":proguard:"
     }
 }

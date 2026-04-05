@@ -36,7 +36,7 @@ public class CrayfishNuker extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Deletes blocks in radius by left click", "Удаляет блоки в радиусе по ЛКМ");
+        return lang.get("Deletes blocks in radius by left click");
     }
     
     @Override public Panel settingPanel() {
@@ -51,7 +51,7 @@ public class CrayfishNuker extends CheatModule {
                     buttonValue(onView = !onView);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("By sight or around the player", "По взгляду или вокруг игрока");
+                    return lang.get("By sight or around the player");
                 }
             },
             new Button("OnlyXRay", onlyXRay) {
@@ -59,7 +59,7 @@ public class CrayfishNuker extends CheatModule {
                     buttonValue(onlyXRay = !onlyXRay);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Removing only XRay blocks", "Удаление только XRay блоков");
+                    return lang.get("Removing only XRay blocks");
                 }
             }
         );

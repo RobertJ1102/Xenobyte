@@ -51,7 +51,7 @@ public class ScreenProtect extends CheatModule {
                         Thread.sleep(delay * 1000);
                     } catch(Exception e) {}
                     moduleHash.forEach(hand::enable);
-                    widgetMessage(lang.get("Screenshot was triggered: ", "Сработал скриншотер: ") + channel, WidgetMode.SUCCESS);
+                    widgetMessage(lang.get("Screenshot was triggered: ") + channel, WidgetMode.SUCCESS);
                     isReady = true;
                 }).start();
             }
@@ -60,7 +60,7 @@ public class ScreenProtect extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Disable active modules for a specified time when taking a screenshot by admin", "Отключит на заданное время активные модули при скриншоте администратора");
+        return lang.get("Disable active modules for a specified time when taking a screenshot by admin");
     }
     
     @Override public Panel settingPanel() {
@@ -70,7 +70,7 @@ public class ScreenProtect extends CheatModule {
                     new UserInput("Channels", channels, InputType.CUSTOM).showFrame();
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Blacklist FMLProxy channels (modify only by appointment)", "Блэклист FMLProxy каналов (изменять только по назначению)");
+                    return lang.get("Blacklist FMLProxy channels (modify only by appointment)");
                 }
             },
             new ScrollSlider("Delay", delay, 6) {
@@ -78,7 +78,7 @@ public class ScreenProtect extends CheatModule {
                      delay = processSlider(dir, withShift);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Time in seconds for which active modules will be disabled when a screenshot is taken", "Время в секундах на которое отключатся активные модули при скриншоте");
+                    return lang.get("Time in seconds for which active modules will be disabled when a screenshot is taken");
                 }
             }
         );

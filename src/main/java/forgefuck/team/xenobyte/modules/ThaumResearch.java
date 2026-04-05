@@ -107,7 +107,7 @@ public class ThaumResearch extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("All aspects and researches are opened", "Магистр ёба");
+        return lang.get("All aspects and researches are opened");
     }
     
     @Override public Panel settingPanel() {
@@ -117,7 +117,7 @@ public class ThaumResearch extends CheatModule {
                     buttonValue(aspectMode = !aspectMode);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Gives out aspects, otherwise opens researches", "Выдаёт аспекты, иначе открывает изучения");
+                    return lang.get("Gives out aspects, otherwise opens researches");
                 }
             }
         );

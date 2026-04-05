@@ -31,7 +31,7 @@ public class MsgSpammer extends CheatModule {
         super("MsgSpammer", Category.MISC, PerformMode.SINGLE);
         players = new ArrayList<String>();
         message = new ArrayList<String>();
-        message.add("йбобаный ты казёл");
+        message.add("hello from PenguinMod");
     }
     
     @Override public void onPostInit() {
@@ -40,7 +40,7 @@ public class MsgSpammer extends CheatModule {
     
     @Override public void onPerform(PerformSource src) {
         if (sendThread != null && sendThread.isAlive()) {
-            widgetMessage(lang.get("The spamming is still in progress...", "Рассылка ещё ведётся..."), WidgetMode.FAIL);
+            widgetMessage(lang.get("The spamming is still in progress..."), WidgetMode.FAIL);
         } else {
             String mess = message.get(0);
             if (!mess.isEmpty()) {
@@ -66,7 +66,7 @@ public class MsgSpammer extends CheatModule {
                 });
                 sendThread.start();
             } else {
-                widgetMessage(lang.get("Message not set", "Сообщение не задано"), WidgetMode.FAIL);
+                widgetMessage(lang.get("Message not set"), WidgetMode.FAIL);
             }
         }
     }
@@ -78,7 +78,7 @@ public class MsgSpammer extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Sending a message to specified players with a 1 second delay", "Рассылка сообщения заданным игрокам с задержкой в 1 секунду");
+        return lang.get("Sending a message to specified players with a 1 second delay");
     }
     
     @Override public Panel settingPanel() {
@@ -88,7 +88,7 @@ public class MsgSpammer extends CheatModule {
                     new UserInput("Message", message, InputType.SINGLE_STRING).showFrame();
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Message being sent", "Отправляемое сообщение");
+                    return lang.get("Message being sent");
                 }
             },
             new Button("Players") {
@@ -96,7 +96,7 @@ public class MsgSpammer extends CheatModule {
                     input.showFrame();
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Players whitelist settings", "Настройка вайтлиста игроков");
+                    return lang.get("Players whitelist settings");
                 }
             }
         );
@@ -127,9 +127,9 @@ public class MsgSpammer extends CheatModule {
         }
         
         @Override public void localizeSet() {
-            white.setText(lang.get("To players from the list", "Игрокам из списка"));
-            black.setText(lang.get("To everyone except the list", "Всем кроме списка"));
-            all.setText(lang.get("Ignoring the list", "Игнорируя список"));
+            white.setText(lang.get("To players from the list"));
+            black.setText(lang.get("To everyone except the list"));
+            all.setText(lang.get("Ignoring the list"));
             super.localizeSet();
         }
         

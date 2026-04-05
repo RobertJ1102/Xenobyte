@@ -57,7 +57,7 @@ public class Widgets extends CheatModule {
         if (!showHud) {
             infoWidgets.clear();
         } else {
-            widgetMessage(lang.get("HUD overlay on", "Оверлей HUD включён"), WidgetMode.SUCCESS);
+            widgetMessage(lang.get("HUD overlay on"), WidgetMode.SUCCESS);
         }
         Config.save();
     }
@@ -209,7 +209,7 @@ public class Widgets extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-         return lang.get("Display setted information widgets. HUD button or keybind toggles the overlay.", "Отображение заданных информационных виджетов. Кнопка HUD или кейбинд переключают оверлей.");
+         return lang.get("Display setted information widgets. HUD button or keybind toggles the overlay.");
     }
     
     @Override public Panel settingPanel() {
@@ -220,7 +220,7 @@ public class Widgets extends CheatModule {
                     buttonValue(showHud);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Show on-screen overlay (side module list, messages, info panels)", "Показывать оверлей (боковой список модулей, сообщения, инфо-панели)");
+                    return lang.get("Show on-screen overlay (side module list, messages, info panels)");
                 }
             },
             new Button("Keyabled", showKeyabled) {
@@ -228,7 +228,7 @@ public class Widgets extends CheatModule {
                     buttonValue(showKeyabled = !showKeyabled);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Active and binded modules", "Активные и забинженные модули");
+                    return lang.get("Active and binded modules");
                 }
             },
             new Button("Messages", showWidget) {
@@ -236,7 +236,7 @@ public class Widgets extends CheatModule {
                     buttonValue(showWidget = !showWidget);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Brief widget messages (bottom left)", "Краткие виджет-сообщения (снизу слева)");
+                    return lang.get("Brief widget messages (bottom left)");
                 }
             },
             new Button("InfoPanels", showInfo) {
@@ -244,7 +244,7 @@ public class Widgets extends CheatModule {
                     buttonValue(showInfo = !showInfo);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Info panels (bottom right)", "Инфо панели (снизу справа)");
+                    return lang.get("Info panels (bottom right)");
                 }
             }
         );

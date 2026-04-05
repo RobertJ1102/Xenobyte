@@ -5,10 +5,14 @@ All notable changes to this repository are summarized here.
 
 ## [Unreleased]
 
+- **Rebrand to PenguinMod:** `mod_id` `penguinmod`, display name **PenguinMod**, artifact `penguinmod-1.0.0.jar`, config dir `%USERPROFILE%/penguinmod/`.
+- **English-only UI:** `LangProvider` no longer switches on `ru_RU`; all `lang.get("…", "…")` calls collapsed to a single English string; removed Russian from `Rand` splashes, `MsgSpammer` default line, disconnect message, and Credits UI button.
+- **Click GUI** module list label: **ClickGUI** (was XenoGui).
 - README refresh: build requirements, output paths, config location, ForgeGradle note.
-- `CHANGELOG.md` added for merged PR notes and ongoing fixes.
-- `.gitignore`: removed blanket `*.md` ignore so documentation can be tracked.
-- **Build:** `build.gradle` may use the **GTNH ForgeGradle** artifact (`com.github.GTNewHorizons:ForgeGradle:1.2.11` via JitPack) so Gradle can download Minecraft `1.7.10` assets (Mojang’s old S3 URLs are dead for upstream `1.2-SNAPSHOT`).
+- `.gitignore`: removed blanket `*.md` ignore so documentation can be tracked; loader JAR path updated for `penguinmod`.
+- **Build:** **GTNH ForgeGradle** (`com.github.GTNewHorizons:ForgeGradle:1.2.11` via JitPack) so Gradle can download Minecraft `1.7.10` assets (Mojang’s old S3 URLs are dead for upstream `1.2-SNAPSHOT`).
+- **AppVeyor:** artifact paths updated to `penguinmod` JAR names where applicable.
+- **Removed ProGuard + native loader pipeline:** build is a normal Forge `jar` / `reobf` flow only; deleted `loader/` (packer, `eloader`, DLLs), ProGuard tasks, and unused `JavaInjector` (only existed for obfuscated injector class name). Install the JAR from `mods/` like any Forge mod.
 
 ## 2026-04-01 — Merged PR #1 (*Improve aura targeting and stabilize xray scanning*)
 

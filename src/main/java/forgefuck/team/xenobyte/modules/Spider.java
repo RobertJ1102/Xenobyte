@@ -29,7 +29,7 @@ public class Spider extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Climbing the walls", "Лазание по стенам");
+        return lang.get("Climbing the walls");
     }
     
     @Override public Panel settingPanel() {
@@ -39,7 +39,7 @@ public class Spider extends CheatModule {
                     vSpeed = (float) processSlider(dir, withShift) / 10;
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Climbing speed", "Cкорость взбирания");
+                    return lang.get("Climbing speed");
                 }
             }
         );

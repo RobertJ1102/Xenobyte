@@ -113,7 +113,7 @@ public class CheckVanish extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Displays the number of invisible players on the info panel", "Выводит на инфопанель количество игроков в ванише");
+        return lang.get("Displays the number of invisible players on the info panel");
     }
     
     @Override public Panel settingPanel() {
@@ -123,7 +123,7 @@ public class CheckVanish extends CheatModule {
                     buttonValue(withNames = !withNames);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Output names whenever possible (beta)", "По возможности выводить имена (beta)");
+                    return lang.get("Output names whenever possible (beta)");
                 }
             }
         );

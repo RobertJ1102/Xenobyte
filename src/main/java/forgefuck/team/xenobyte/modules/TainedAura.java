@@ -46,7 +46,7 @@ public class TainedAura extends CheatModule {
     }
 
     @Override public String moduleDesc() {
-        return lang.get("Killing all living creatures by left mouse click", "Ваншотает живность по ЛКМ");
+        return lang.get("Killing all living creatures by left mouse click");
     }
     
     @Override public Panel settingPanel() {
@@ -56,7 +56,7 @@ public class TainedAura extends CheatModule {
                     buttonValue(inRadius = !inRadius);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("By radius or sight", "По радиусу или взгляду");
+                    return lang.get("By radius or sight");
                 }
             },
             new Button("WithSound", withSound) {
@@ -64,7 +64,7 @@ public class TainedAura extends CheatModule {
                     buttonValue(withSound = !withSound);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Some weird sound", "Какой-то стрёмный звук");
+                    return lang.get("Some weird sound");
                 }
             }
         );

@@ -23,7 +23,7 @@ public class ExtraFakeSlot extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Issuing a fake item into a liquid filler that the player is looking at", "Выдача фейк предмета в жидкостный заполнитель на который смотрит игрок");
+        return lang.get("Issuing a fake item into a liquid filler that the player is looking at");
     }
     
     @Override public boolean isWorking() {

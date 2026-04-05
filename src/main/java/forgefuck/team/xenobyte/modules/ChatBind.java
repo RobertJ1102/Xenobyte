@@ -28,17 +28,17 @@ public class ChatBind extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Execution of the set commands by keybind", "Выполнение заданных команд по кейбинду");
+        return lang.get("Execution of the set commands by keybind");
     }
     
     @Override public Panel settingPanel() {
         return new Panel(
             new Button("Commands") {
                 @Override public void onLeftClick() {
-                    new UserInput(lang.get("Commands", "Команды"), commands, InputType.CUSTOM).showFrame();
+                    new UserInput(lang.get("Commands"), commands, InputType.CUSTOM).showFrame();
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Command list", "Список команд");
+                    return lang.get("Command list");
                 }
             }
         );

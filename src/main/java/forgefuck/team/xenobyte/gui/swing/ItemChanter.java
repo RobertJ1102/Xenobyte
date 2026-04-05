@@ -118,24 +118,24 @@ public class ItemChanter extends XenoJFrame implements KeyListener {
     }
     
     @Override public void localizeSet() {
-        checkMode.setToolTipText(lang.get("Load NBT of an item in hand or an entity in focus by the GiveSelect keybind", "Загружать NBT предмета в руке или сущности в фокусе по кейбинду GiveSelect"));
-        loreField.setBorder(customTitledBorder(lang.get("Lore (comma separated)", "Описания (через запятую)"), TitledBorder.CENTER));
-        effDurationField.setBorder(customTitledBorder(lang.get("Potion duration", "Время эффекта"), TitledBorder.CENTER));
-        effAmpliferField.setBorder(customTitledBorder(lang.get("Potion power", "Сила эффекта"), TitledBorder.CENTER));
-        keepName.setToolTipText(lang.get("Keep names on reset (display tag)", "Не сбрасывать имена (display tag)"));
-        enchLevelField.setBorder(customTitledBorder(lang.get("Enchant", "LvL зачарования"), TitledBorder.CENTER));
-        jsonBar.setBorder(customTitledBorder(lang.get("NBT Json Editor", "Json редактор NBT")));
-        nameField.setBorder(customTitledBorder(lang.get("Name", "Имя"), TitledBorder.CENTER));
-        enchBar.setBorder(customTitledBorder(lang.get("Item chant", "Зачарование предмета")));
-        effBar.setBorder(customTitledBorder(lang.get("Potion effect", "Эффект зелья")));
-        logField.setBorder(customTitledBorder(lang.get("Last info", "Инфо")));
-        ffGift.setToolTipText(lang.get("Imbalance potion", "Имбовая зелька"));
-        onTop.setToolTipText(lang.get("Gui on top", "Поверх окон"));
-        addEnch.setText(lang.get("Add", "Добавить"));
-        onItem.setText(lang.get("Item", "Предмет"));
-        addEff.setText(lang.get("Add", "Добавить"));
-        onBook.setText(lang.get("Book", "Книга"));
-        setTitle(lang.get("Chanter", "Чантер"));
+        checkMode.setToolTipText(lang.get("Load NBT of an item in hand or an entity in focus by the GiveSelect keybind"));
+        loreField.setBorder(customTitledBorder(lang.get("Lore (comma separated)"), TitledBorder.CENTER));
+        effDurationField.setBorder(customTitledBorder(lang.get("Potion duration"), TitledBorder.CENTER));
+        effAmpliferField.setBorder(customTitledBorder(lang.get("Potion power"), TitledBorder.CENTER));
+        keepName.setToolTipText(lang.get("Keep names on reset (display tag)"));
+        enchLevelField.setBorder(customTitledBorder(lang.get("Enchant"), TitledBorder.CENTER));
+        jsonBar.setBorder(customTitledBorder(lang.get("NBT Json Editor")));
+        nameField.setBorder(customTitledBorder(lang.get("Name"), TitledBorder.CENTER));
+        enchBar.setBorder(customTitledBorder(lang.get("Item chant")));
+        effBar.setBorder(customTitledBorder(lang.get("Potion effect")));
+        logField.setBorder(customTitledBorder(lang.get("Last info")));
+        ffGift.setToolTipText(lang.get("Imbalance potion"));
+        onTop.setToolTipText(lang.get("Gui on top"));
+        addEnch.setText(lang.get("Add"));
+        onItem.setText(lang.get("Item"));
+        addEff.setText(lang.get("Add"));
+        onBook.setText(lang.get("Book"));
+        setTitle(lang.get("Chanter"));
     }
     
     @Override public void addElements() {

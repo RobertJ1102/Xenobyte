@@ -26,7 +26,7 @@ public class RenderControl extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Enabling rendering of objects in the world", "Включение рендера объектов в мире");
+        return lang.get("Enabling rendering of objects in the world");
     }
     
     @Override public Panel settingPanel() {
@@ -36,7 +36,7 @@ public class RenderControl extends CheatModule {
                     buttonValue(living = !living);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Render living base", "Рендер живности");
+                    return lang.get("Render living base");
                 }
             }
         );

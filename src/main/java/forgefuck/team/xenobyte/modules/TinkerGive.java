@@ -22,7 +22,7 @@ public class TinkerGive extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Issuing an item to any inventory from TinkersConstruct that the player is looking at", "Выдача предмета в любой инвентарь из TinkersConstruct на который смотрит игрок");
+        return lang.get("Issuing an item to any inventory from TinkersConstruct that the player is looking at");
     }
     
 }

@@ -30,7 +30,7 @@ public class CreditsGui extends XenoJFrame {
 
     @Override public void configurate() {
         fieldsPanel.setLayout(new GridBagLayout());
-        accept.setText(" ОК ");
+        accept.setText(" OK ");
     }
 
     @Override public void addElements() {
@@ -60,7 +60,7 @@ public class CreditsGui extends XenoJFrame {
             super(title);
             setHorizontalAlignment(JTextField.CENTER);
             setFont(FONT);
-            if (link != null) {
+            if (link != null && !link.isEmpty()) {
                 addMouseListener(new MouseAdapter() {
                     @Override public void mouseClicked(MouseEvent e) {
                         if (e.getClickCount() > 0) {

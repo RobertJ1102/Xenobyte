@@ -23,7 +23,7 @@ public class RedBarrelGive extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Issuing an item to the Barrel (ProjectRed) which the player is looking at", "Выдача предмета в Бочку (ProjectRed) на которую смотрит игрок");
+        return lang.get("Issuing an item to the Barrel (ProjectRed) which the player is looking at");
     }
     
     @Override public boolean isWorking() {

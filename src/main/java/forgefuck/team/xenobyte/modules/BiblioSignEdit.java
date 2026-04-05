@@ -29,7 +29,7 @@ public class BiblioSignEdit extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("BiblioFancySign opener in claimed area on right click", "Открывашка BiblioFancySign в привате по ПКМ");
+        return lang.get("BiblioFancySign opener in claimed area on right click");
     }
     
     @Override public boolean isWorking() {

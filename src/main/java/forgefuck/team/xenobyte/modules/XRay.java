@@ -119,7 +119,7 @@ public class XRay extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Rendering blocks in the world selected in NEI/XRaySelect", "Отрисовка блоков в мире выбранных в NEI/XRaySelect");
+        return lang.get("Rendering blocks in the world selected in NEI/XRaySelect");
     }
     
     @Override public Panel settingPanel() {
@@ -129,7 +129,7 @@ public class XRay extends CheatModule {
                     buttonValue(lines = !lines);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Drawing all tracer lines", "Отрисовка всех трасер линий");
+                    return lang.get("Drawing all tracer lines");
                 }
             },
             new Button("BindLines", bindLines) {
@@ -137,7 +137,7 @@ public class XRay extends CheatModule {
                     buttonValue(bindLines = !bindLines);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Snap line tracers to cursor", "Привязка трасер линий к курсору");
+                    return lang.get("Snap line tracers to cursor");
                 }
             },
             new ScrollSlider("Radius", radius, 100) {
@@ -145,7 +145,7 @@ public class XRay extends CheatModule {
                     radius = processSlider(dir, withShift);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Blocks check radius", "Радиус проверки блоков");
+                    return lang.get("Blocks check radius");
                 }
             },
             new ScrollSlider("Height", height, 256) {
@@ -153,7 +153,7 @@ public class XRay extends CheatModule {
                     height = processSlider(dir, withShift);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Blocks check height", "Высота проверки блоков");
+                    return lang.get("Blocks check height");
                 }
             }
         );

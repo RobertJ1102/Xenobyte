@@ -36,7 +36,7 @@ public class FTBSatchelDupe extends CheatModule{
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Open any ThermalExpansion bag with Items and press keybind of function", "Открыть любую сумку из ThermalExpansion с вещами и нажать кейбинд функции");
+        return lang.get("Open any ThermalExpansion bag with Items and press keybind of function");
     }
 
 }

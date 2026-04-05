@@ -77,8 +77,8 @@ public abstract class XenoJFrame extends JFrame implements ActionListener, Xeno 
             lastFrame.dispose();
         }
         lastFrame = this;
-        accept.setText(lang.get("Accept", "Применить"));
-        clear.setText(lang.get("Reset", "Сбросить"));
+        accept.setText(lang.get("Accept"));
+        clear.setText(lang.get("Reset"));
         setState(NORMAL);
         localizeSet();
         packFrame();

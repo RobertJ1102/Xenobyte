@@ -21,7 +21,7 @@ public class CreativeGive extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Issuing an item (only in creative)", "Выдача предмета (только в креативе)");
+        return lang.get("Issuing an item (only in creative)");
     }
     
     @Override public Panel settingPanel() {
@@ -31,7 +31,7 @@ public class CreativeGive extends CheatModule {
                     buttonValue(drop = !drop);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Drop item, or in active slot", "Выбрасывание предмета, или в активный слот");
+                    return lang.get("Drop item, or in active slot");
                 }
             }
         );

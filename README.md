@@ -1,9 +1,9 @@
-<p align="center"><img src="https://github.com/N1nt4nd0/Xenobyte/blob/master/logo.png" alt="Xenobyte logo"></p>
+<p align="center"><b>PenguinMod</b></p>
 
-# Xenobyte
+# PenguinMod
 
-Client-side mod / “hack pack” for **Minecraft 1.7.10** with **Minecraft Forge**.  
-Original project by **N1nt4nd0**; this tree may include community fixes and tooling updates.
+Client-side mod for **Minecraft 1.7.10** with **Minecraft Forge**.  
+Forked from the Xenobyte lineage; English UI, renamed artifact, and maintenance fixes.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/qjnhgxe3cmcy0y6y/branch/master?svg=true)](https://ci.appveyor.com/project/N1nt4nd0/xenobyte/branch/master)
 
@@ -44,11 +44,11 @@ set JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-8.x.x-hotspot
 set PATH=%JAVA_HOME%\bin;%PATH%
 ```
 
-**Output:** the main mod artifact is:
+**Output:** the mod JAR (Forge reobfuscated) is:
 
-`build/libs/xenobyte-1.0.0.jar`
+`build/libs/penguinmod-1.0.0.jar`
 
-The build may also produce ProGuard mappings and a `final-*.jar` intermediate; the usual end result for Forge is the reobfuscated JAR name above. See `build.gradle` for the ProGuard + `reobf` chain.
+Drop it into your `mods` folder like any other Forge mod.
 
 **ForgeGradle / Mojang downloads:** upstream `ForgeGradle:1.2-SNAPSHOT` used dead Mojang S3 URLs. This repo uses the **GTNH ForgeGradle fork** (`1.2.11` via JitPack) so `downloadClient` works with current Mojang endpoints.
 
@@ -58,48 +58,27 @@ The build may also produce ProGuard mappings and a `final-*.jar` intermediate; t
 
 Runtime settings are stored as JSON:
 
-- **Windows:** `%USERPROFILE%\xenobyte\config.cfg`  
-  e.g. `C:\Users\<you>\xenobyte\config.cfg`
+- **Windows:** `%USERPROFILE%\penguinmod\config.cfg`  
+  e.g. `C:\Users\<you>\penguinmod\config.cfg`
 
-If something misbehaves, back up that file, delete it, and relaunch to reset module state.
-
----
-
-## Native loader / CI
-
-The `loader/` tree contains tooling (packer, `eloader`) used to build DLLs. **AppVeyor** (`appveyor.yml`) runs a full pipeline: Gradle build → packer → MSBuild → zipped artifacts. Local builds often only need the Gradle JAR for in-game testing.
+If something misbehaves, back up that file, delete it, and relaunch to reset module state.  
+(Older Xenobyte configs lived under `%USERPROFILE%\xenobyte\` — that path is no longer used after the rename.)
 
 ---
 
-## Video guide
+## CI
 
-- [YouTube — usage overview](https://youtu.be/nZAEb3mmXL4)
+**AppVeyor** (`appveyor.yml`) runs `gradlew.bat build` and publishes `build/libs/penguinmod-1.0.0.jar`.
 
 ---
 
 ## Crash checklist
 
-- Injector **OS / bitness** must match the game process and JVM.
 - **Minecraft version** must match what the mod targets (1.7.10).
-- Some **launchers** block injection.
-- Use **Java 8+** for the game; use **JDK 8** to **compile** this project.
-
----
-
-## Links (original author)
-
-- [YouTube](https://www.youtube.com/channel/UClXGh0w1BiBEyxn7iFI4dsA)
-- [Instagram](https://www.instagram.com/n1nt4nd0)
-- [Telegram](https://t.me/N1nt4nd0)
-
----
-
-## Thanks
-
-Tenon4ik, Left4Dead, radioegor146, SongJ, and everyone who keeps old Forge tooling usable (e.g. GTNH ForgeGradle).
+- Use **Java 8** for the game; use **JDK 8** to **compile** this project.
 
 ---
 
 ## Changelog
 
-See [`CHANGELOG.md`](CHANGELOG.md) for notable updates (e.g. merged PRs and build fixes).
+See [`CHANGELOG.md`](CHANGELOG.md).

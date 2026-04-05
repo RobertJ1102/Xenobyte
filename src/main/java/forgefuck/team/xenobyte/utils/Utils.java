@@ -158,7 +158,7 @@ public class Utils {
     public void disconnect() {
         NetHandlerPlayClient netHandler = mc().getNetHandler();
         if (netHandler != null) {
-            netHandler.getNetworkManager().closeChannel(new ChatComponentText("Тупа бан"));
+            netHandler.getNetworkManager().closeChannel(new ChatComponentText("Disconnected."));
         }
     }
     

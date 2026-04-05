@@ -40,7 +40,7 @@ public class XenoGuiScreen extends GuiScreen implements Xeno {
                 HAND.bind(HAND.xenoGui(), this, key);
             }
             @Override public String elementDesc() {
-                return lang.get("Version", "Версия") + " " + mod_version;
+                return lang.get("Version") + " " + mod_version;
             }
         }, PanelLayout.HORIZONTAL, PanelSorting.DEFAULT);
         for (Category CAT : Category.values()) {

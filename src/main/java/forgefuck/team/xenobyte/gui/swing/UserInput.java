@@ -65,7 +65,7 @@ public class UserInput extends XenoJFrame {
     }
     
     @Override public void localizeSet() {
-        add.setText(lang.get("Add", "Добавить"));
+        add.setText(lang.get("Add"));
     }
 
     @Override public void addElements() {

@@ -80,7 +80,7 @@ public class XenAura extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Hitting entities in radius", "Нанесение ударов по сущностям в радиусе");
+        return lang.get("Hitting entities in radius");
     }
     
     @Override public Panel settingPanel() {
@@ -90,7 +90,7 @@ public class XenAura extends CheatModule {
                     radius = processSlider(dir, withShift);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Kill aura radius", "Радиус киллауры");
+                    return lang.get("Kill aura radius");
                 }
             },
             new ScrollSlider("Delay", delay, 0, TickHelper.ONE_SEC) {
@@ -98,7 +98,7 @@ public class XenAura extends CheatModule {
                     delay = processSlider(dir, withShift);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Hitting delay", "Задержка нанесения ударов");
+                    return lang.get("Hitting delay");
                 }
             },
             new ScrollSlider("MaxTargets", maxTargets, 1, 10) {
@@ -106,15 +106,15 @@ public class XenAura extends CheatModule {
                     maxTargets = Math.max(1, processSlider(dir, withShift));
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Maximum attacked targets per tick", "Максимум атакуемых целей за тик");
+                    return lang.get("Maximum attacked targets per tick");
                 }
             },
             new Button("Friends") {
                 @Override public void onLeftClick() {
-                    new UserInput(lang.get("Friends", "Друзья"), friendsList, InputType.CUSTOM).showFrame();
+                    new UserInput(lang.get("Friends"), friendsList, InputType.CUSTOM).showFrame();
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Whitelist of friends by nicknames", "Вайтлист друзей по никнеймам");
+                    return lang.get("Whitelist of friends by nicknames");
                 }
             },
             new Button("HandShake", handshake) {
@@ -122,7 +122,7 @@ public class XenAura extends CheatModule {
                     buttonValue(handshake = !handshake);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Wave of the hand on hit", "Взмах рукой при ударе");
+                    return lang.get("Wave of the hand on hit");
                 }
             },
             new Button("IgnoreWalls", ignoreWalls) {
@@ -130,7 +130,7 @@ public class XenAura extends CheatModule {
                     buttonValue(ignoreWalls = !ignoreWalls);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Ignore walls", "Игнорирование преград");
+                    return lang.get("Ignore walls");
                 }
             },
             new Button("Pointed", pointed) {
@@ -138,7 +138,7 @@ public class XenAura extends CheatModule {
                     buttonValue(pointed = !pointed);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Striking only by looking at the object", "Нанесение ударов только по взгляду на объект");
+                    return lang.get("Striking only by looking at the object");
                 }
             },
             new Button("Criticals", criticals) {
@@ -146,7 +146,7 @@ public class XenAura extends CheatModule {
                     buttonValue(criticals = !criticals);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Strike with crits (can lagging)", "Наносить удары с критами (может пролагивать)");
+                    return lang.get("Strike with crits (can lagging)");
                 }
             },
             new Button("Players", players) {
@@ -154,7 +154,7 @@ public class XenAura extends CheatModule {
                     buttonValue(players = !players);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Damage to players", "Урон по игрокам");
+                    return lang.get("Damage to players");
                 }
             },
             new Button("Animals", animals) {
@@ -162,7 +162,7 @@ public class XenAura extends CheatModule {
                     buttonValue(animals = !animals);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Damage to animals", "Урон по животным");
+                    return lang.get("Damage to animals");
                 }
             },
             new Button("Monsters", monsters) {
@@ -170,7 +170,7 @@ public class XenAura extends CheatModule {
                     buttonValue(monsters = !monsters);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Damage to monsters", "Урон по монстрам");
+                    return lang.get("Damage to monsters");
                 }
             },
             new Button("Villagers", villagers) {
@@ -178,7 +178,7 @@ public class XenAura extends CheatModule {
                     buttonValue(villagers = !villagers);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Damage to villagers", "Урон по жителям");
+                    return lang.get("Damage to villagers");
                 }
             },
             new Button("CustomNPC", customnpc) {
@@ -186,7 +186,7 @@ public class XenAura extends CheatModule {
                     buttonValue(customnpc = !customnpc);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Damage to custom npc", "Урон по неписям");
+                    return lang.get("Damage to custom npc");
                 }
             }
         );

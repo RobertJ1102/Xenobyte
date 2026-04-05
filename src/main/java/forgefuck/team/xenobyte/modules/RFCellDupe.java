@@ -31,7 +31,7 @@ public class RFCellDupe extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Creating infinite items in a ME cell in hand", "Создание бесконечных предметов в ME ячейке в руке");
+        return lang.get("Creating infinite items in a ME cell in hand");
     }
     
     @Override public boolean isWorking() {

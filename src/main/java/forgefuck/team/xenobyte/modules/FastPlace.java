@@ -19,7 +19,7 @@ public class FastPlace extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Quick block placing", "Быстрая установка блоков");
+        return lang.get("Quick block placing");
     }
 
 }

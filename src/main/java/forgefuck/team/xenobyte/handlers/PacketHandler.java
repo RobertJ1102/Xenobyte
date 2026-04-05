@@ -8,14 +8,14 @@ import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.Packet;
 
 public class PacketHandler {
-    private static final String XENO_PACKET_HANDLER = "xeno_packet_handler";
+    private static final String PACKET_HANDLER_NAME = "penguin_packet_handler";
     
     public PacketHandler(ModuleHandler handler, NetHandlerPlayClient clientHandler) {
         if (handler != null && clientHandler != null) {
-            if (clientHandler.getNetworkManager().channel().pipeline().get(XENO_PACKET_HANDLER) != null) {
-                clientHandler.getNetworkManager().channel().pipeline().remove(XENO_PACKET_HANDLER);
+            if (clientHandler.getNetworkManager().channel().pipeline().get(PACKET_HANDLER_NAME) != null) {
+                clientHandler.getNetworkManager().channel().pipeline().remove(PACKET_HANDLER_NAME);
             }
-            clientHandler.getNetworkManager().channel().pipeline().addBefore("packet_handler", XENO_PACKET_HANDLER, new ChannelDuplexHandler() {
+            clientHandler.getNetworkManager().channel().pipeline().addBefore("packet_handler", PACKET_HANDLER_NAME, new ChannelDuplexHandler() {
                 @Override public void channelRead(ChannelHandlerContext ctx, Object in) throws Exception {
                     if (handler.enabledModules().allMatch(m -> m.doReceivePacket((Packet) in))) {
                         super.channelRead(ctx, in);
@@ -27,7 +27,7 @@ public class PacketHandler {
                     }
                 }
                 @Override public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-                    Xeno.logger.info("XenoPacketHandler registered: " + ctx.name());
+                    Xeno.logger.info("PenguinMod packet handler registered: " + ctx.name());
                 }
             });
         }

@@ -41,7 +41,7 @@ public class GalacticFire extends CheatModule {
     }
 
     @Override public String moduleDesc() {
-        return lang.get("Sets fire to living creatures by left mouse click", "Поджигает живность по ЛКМ");
+        return lang.get("Sets fire to living creatures by left mouse click");
     }
     
     @Override public Panel settingPanel() {
@@ -51,7 +51,7 @@ public class GalacticFire extends CheatModule {
                     buttonValue(inRadius = !inRadius);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("By radius or sight", "По радиусу или взгляду");
+                    return lang.get("By radius or sight");
                 }
             }
         );

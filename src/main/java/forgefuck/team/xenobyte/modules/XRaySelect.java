@@ -106,7 +106,7 @@ public class XRaySelect extends CheatModule {
                 SelectedBlock block = getBlock(stack);
                 new XRaySettings(block == null ? new SelectedBlock(stack, Colors.BLACK, 1, false, false) : block).showFrame();
             } else {
-                widgetMessage(lang.get("Hover a block in NEI or look at a block in world and press the keybind", "Наведите на блок в NEI или смотрите на блок в мире и нажмите кейбинд"), WidgetMode.FAIL);
+                widgetMessage(lang.get("Hover a block in NEI or look at a block in world and press the keybind"), WidgetMode.FAIL);
             }
         }
     }
@@ -124,7 +124,7 @@ public class XRaySelect extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Selecting by keybind a block for X-Ray in NEI, or by looking at block. Adds NEI @X-Ray tab", "Выбор по кейбинду блока для X-Ray в NEI, или по взгляду на блок. Добавляет вкладку @X-Ray");
+        return lang.get("Selecting by keybind a block for X-Ray in NEI, or by looking at block. Adds NEI @X-Ray tab");
     }
     
     @Override public Panel settingPanel() {
@@ -134,7 +134,7 @@ public class XRaySelect extends CheatModule {
                     buttonValue(guiHint = !guiHint);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Highlighting selected items in inventory", "Подсветка выбранных предметов в инвентаре");
+                    return lang.get("Highlighting selected items in inventory");
                 }
             }
         );
@@ -171,10 +171,10 @@ public class XRaySelect extends CheatModule {
         
         @Override public void localizeSet() {
             super.localizeSet();
-            tracer.setToolTipText(lang.get("Draw tracer line to block", "Рисовать трасер линию к блоку"));
-            hidden.setToolTipText(lang.get("Hide block from render", "Скрыть блок из отрисовки"));
-            s.setBorder(customTitledBorder(lang.get("Size", "Размер")));
-            clear.setText(lang.get("Delete", "Удалить"));
+            tracer.setToolTipText(lang.get("Draw tracer line to block"));
+            hidden.setToolTipText(lang.get("Hide block from render"));
+            s.setBorder(customTitledBorder(lang.get("Size")));
+            clear.setText(lang.get("Delete"));
         }
         
         @Override public void actionPerformed(ActionEvent e) {

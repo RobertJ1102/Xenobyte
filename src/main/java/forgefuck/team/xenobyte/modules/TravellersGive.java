@@ -22,7 +22,7 @@ public class TravellersGive extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Issuing an item into a vanilla chest that the player is looking at", "Выдача предмета в обычный сундук на который смотрит игрок");
+        return lang.get("Issuing an item into a vanilla chest that the player is looking at");
     }
     
     @Override public boolean isWorking() {

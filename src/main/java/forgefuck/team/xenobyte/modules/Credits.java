@@ -17,7 +17,7 @@ public class Credits extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Product information + links", "Информация о продукте + ссылки");
+        return lang.get("Product information + links");
     }
 
 }

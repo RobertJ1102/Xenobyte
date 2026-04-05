@@ -31,7 +31,7 @@ public class AutoDrop extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Item drop from the active slot", "Дроп предмета из активного слота");
+        return lang.get("Item drop from the active slot");
     }
     
     @Override public Panel settingPanel() {
@@ -41,7 +41,7 @@ public class AutoDrop extends CheatModule {
                     delay = processSlider(dir, withShift);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Item drop delay", "Задержка дропа предмета");
+                    return lang.get("Item drop delay");
                 }
             },
             new ScrollSlider("Slot", slot, 9) {
@@ -49,7 +49,7 @@ public class AutoDrop extends CheatModule {
                     slot = processSlider(dir, withShift);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("The slot from which items are dropped", "Слот из которого дропаются предметы");
+                    return lang.get("The slot from which items are dropped");
                 }
             },
             new Button("AllStack", allStack) {
@@ -57,7 +57,7 @@ public class AutoDrop extends CheatModule {
                     buttonValue(allStack = !allStack);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Drop an entire stack or one item at a time", "Дропать весь стак или по одному предмету");
+                    return lang.get("Drop an entire stack or one item at a time");
                 }
             }
         );

@@ -132,7 +132,7 @@ public class ModuleHandler  {
     public void bind(CheatModule module, Button button, int key) {
         CheatModule conflicted = moduleGetter(m -> m.hasKeyBind() && m.getKeyBind() == key);
         if (conflicted != null && ! conflicted.equals(module)) {
-            widgets().widgetMessage(new WidgetMessage(Xeno.lang.get("Keybind conflicts with", "Кейбинд конфликтует с") + " " + (conflicted.hasCategory() ? conflicted.getCategory() + "/" : "") + conflicted, WidgetMode.FAIL));
+            widgets().widgetMessage(new WidgetMessage(Xeno.lang.get("Keybind conflicts with") + " " + (conflicted.hasCategory() ? conflicted.getCategory() + "/" : "") + conflicted, WidgetMode.FAIL));
         } else {
             if (module.getKeyBind() == key) {
                 if (!module.equals(xenoGui())) {
@@ -157,7 +157,7 @@ public class ModuleHandler  {
             ((Widgets) module).toggleHud();
             return;
         }
-        WidgetMessage mess = new WidgetMessage(module, Xeno.lang.get("completed", "выполнен"), WidgetMode.INFO);
+        WidgetMessage mess = new WidgetMessage(module, Xeno.lang.get("completed"), WidgetMode.INFO);
         switch (module.getMode()) {
         case SINGLE:
             break;

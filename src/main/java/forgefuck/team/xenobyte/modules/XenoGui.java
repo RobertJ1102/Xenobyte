@@ -11,7 +11,7 @@ import forgefuck.team.xenobyte.gui.click.XenoGuiScreen;
 public class XenoGui extends CheatModule {
     
     public XenoGui() {
-        super("XenoGui", Category.NONE, PerformMode.SINGLE);
+        super("ClickGUI", Category.NONE, PerformMode.SINGLE);
         setKeyBind(Keyboard.KEY_B);
     }
     

@@ -55,10 +55,10 @@ public class ColorPickerGui extends XenoJFrame implements ChangeListener {
     }
     
     @Override public void localizeSet() {
-        a.setBorder(customTitledBorder(lang.get("Transparency", "Прозрачность")));
-        r.setBorder(customTitledBorder(lang.get("Red", "Красный")));
-        g.setBorder(customTitledBorder(lang.get("Green", "Зеленый")));
-        b.setBorder(customTitledBorder(lang.get("Blue", "Синий")));
+        a.setBorder(customTitledBorder(lang.get("Transparency")));
+        r.setBorder(customTitledBorder(lang.get("Red")));
+        g.setBorder(customTitledBorder(lang.get("Green")));
+        b.setBorder(customTitledBorder(lang.get("Blue")));
     }
 
     @Override public void addElements() {

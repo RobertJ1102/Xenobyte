@@ -48,7 +48,7 @@ public class FactoryDupe extends CheatModule {
     }
     
     @Override public String moduleDesc() {
-        return lang.get("Item dupe under the cursor in the inventories (if there is no item, then clears the inventory)", "Дюп предмета под курсором в инвентарях (если предмета нет, то очищает инвентари)");
+        return lang.get("Item dupe under the cursor in the inventories (if there is no item, then clears the inventory)");
     }
     
     @Override public Panel settingPanel() {
@@ -58,7 +58,7 @@ public class FactoryDupe extends CheatModule {
                     buttonValue(inRadius = !inRadius);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("By radius or sight", "По радиусу или взгляду");
+                    return lang.get("By radius or sight");
                 }
             },
             new Button("FillSlots", fillSlots) {
@@ -66,7 +66,7 @@ public class FactoryDupe extends CheatModule {
                     buttonValue(fillSlots = !fillSlots);
                 }
                 @Override public String elementDesc() {
-                    return lang.get("Across all inventory slots", "Работа по всем слотам инвентаря");
+                    return lang.get("Across all inventory slots");
                 }
             }
         );
